@@ -1,4 +1,4 @@
-import {Posts, Comments} from '/imports/configs/collections';
+import {Posts, Comments, Playlists} from '/imports/configs/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 
@@ -23,4 +23,17 @@ Meteor.publish('posts.comments', function (postId) {
   check(postId, String);
   const selector = {postId};
   return Comments.find(selector);
+});
+
+Meteor.publish('playlists.list', function () {
+  const selector = {
+    privacy: 'public',
+  };
+  const options = {
+    fields: {_id: 1, title: 1, cover: 1, createdAt: 1},
+    sort: {createdAt: -1},
+    limit: 10
+  };
+
+  return Playlists.find(selector, options);
 });
