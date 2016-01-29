@@ -31,5 +31,9 @@
   },
   "devDependencies": {
     "xo": "^0.12.1"
+  },
+  "dependencies": {
+    "youtube-api": "^1.4.0",
+    "youtube-node": "^1.3.0"
   }
 }
