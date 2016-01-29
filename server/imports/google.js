@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-'use strict';
-
 /**
  * A module for interacting with Google APIs
  * @module google
@@ -53,7 +51,7 @@ function GoogleApis(options) {
  * Set options
  * @param  {Object} opts Options to set
  */
-GoogleApis.prototype.options = function(opts) {
+GoogleApis.prototype.options = function (opts) {
   this._options = opts || {};
 };
 
@@ -64,9 +62,11 @@ GoogleApis.prototype.options = function(opts) {
  * @param {Array} apis Apis to be added
  * @private
  */
-GoogleApis.prototype.addAPIs = function(apis) {
+GoogleApis.prototype.addAPIs = function (apis) {
   for (var apiName in apis) {
-    this[apiName] = apis[apiName].bind(this);
+    if (apis.hasOwnProperty(apiName)) {
+      this[apiName] = apis[apiName].bind(this);
+    }
   }
 };
 
