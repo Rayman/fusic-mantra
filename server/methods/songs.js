@@ -1,4 +1,4 @@
-import {Songs, Comments} from '/lib/collections';
+import {Songs} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check} from 'meteor/check';
 

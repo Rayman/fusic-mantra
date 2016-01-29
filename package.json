@@ -6,7 +6,28 @@
     "test": "xo"
   },
   "xo": {
-    "spaces": true
+    "space": true,
+    "rules": {
+      "strict": [
+        2,
+        "never"
+      ],
+      "no-unused-expressions": [
+        2,
+        {
+          "allowShortCircuit": true
+        }
+      ],
+      "new-cap": [
+        2,
+        {
+          "capIsNewExceptions": [
+            "Optional",
+            "OneOf"
+          ]
+        }
+      ]
+    }
   },
   "devDependencies": {
     "xo": "^0.12.1"
