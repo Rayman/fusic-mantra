@@ -16,18 +16,40 @@ function getUserIp() {
   }
 }
 
+function getYoutubeCall(...names) {
+  // get the youtube api function
+  let fn = Youtube;
+  for (let name of names) {
+    fn = fn[name];
+  }
+
+  const that = this;
+  const logString = names.join('.');
+
+  return function (options, callback) {
+    // add userIp for restrictions
+    var clientIp = getUserIp.call(that);
+    if (clientIp) {
+      options.userIp = clientIp;
+    }
+
+    fn(options, function (err, result) {
+      if (err || !result) {
+        console.warn('FAIL', logString, options, err);
+      } else {
+        console.log('OK', logString, options);
+      }
+      callback.apply(that, arguments);
+    });
+  };
+}
+
 Meteor.methods({
   'youtube/search/list': Meteor.wrapAsync(function (options, callback) {
     check(options, Object);
     options.part = options.part || 'snippet';
 
-    var clientIp = getUserIp.call(this);
-    if (clientIp) {
-      options.userIp = clientIp;
-    }
-
-    console.log('Youtube.search.list', options);
-    Youtube.search.list(options, callback);
+    getYoutubeCall.call(this, 'search', 'list')(options, callback);
   })
 });
 
@@ -37,12 +59,6 @@ Meteor.methods({
       part: String
     }));
 
-    var clientIp = getUserIp.call(this);
-    if (clientIp) {
-      options.userIp = clientIp;
-    }
-
-    console.log('youtube.videos.list', options);
-    Youtube.videos.list(options, callback);
+    getYoutubeCall.call(this, 'videos', 'list')(options, callback);
   })
 });
