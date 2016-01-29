@@ -1,4 +1,4 @@
-import {Playlists, Comments} from '/imports/configs/collections';
+import {Playlists, Comments} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
 
