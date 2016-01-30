@@ -1,0 +1,18 @@
+<template name="playlistContainer">
+
+</template>
+
+<template name="playlist">
+  {{#each songs}}
+    <div class="song">
+      <p>{{title}}</p>
+    </div>
+  {{/each}}
+  {{#if Template.subscriptionsReady}}
+    {{#if hasMorePosts}}
+      <a class="load-more" href="#">Load More</a>
+    {{/if}}
+  {{else}}
+    <div class="loading">Loading...</div>
+  {{/if}}
+</template>

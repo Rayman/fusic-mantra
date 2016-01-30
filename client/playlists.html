@@ -1,0 +1,29 @@
+<template name="lastPlaylistsContainer">
+  {{#if Template.subscriptionsReady}}
+    {{> Playlists playlists=playlists}}
+  {{else}}
+    Loading...
+  {{/if}}
+</template>
+
+<template name="ownPlaylistsContainer">
+  {{#if Template.subscriptionsReady}}
+    {{> Playlists playlists=playlists}}
+  {{else}}
+    Loading...
+  {{/if}}
+</template>
+
+<template name="followedPlaylistsContainer">
+  {{#if Template.subscriptionsReady}}
+    {{> Playlists playlists=playlists}}
+  {{else}}
+    Loading...
+  {{/if}}
+</template>
+
+<template name="Playlists">
+  {{#each playlist in playlists}}
+    <p><img height="24" src="{{playlist.cover}}" />{{playlist.title}}</p>
+  {{/each}}
+</template>
