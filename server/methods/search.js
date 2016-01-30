@@ -1,4 +1,6 @@
 import {Youtube} from '../imports/youtube';
+import {Songs} from '../../lib/collections';
+
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
 
@@ -61,4 +63,55 @@ Meteor.methods({
 
     getYoutubeCall.call(this, 'videos', 'list')(options, callback);
   })
+});
+
+Meteor.methods({
+  /* eslint quote-props: [2, "consistent"] */
+  'youtube_more_info': function (options) {
+    check(options,
+      Match.ObjectIncluding({
+        part: String
+      })
+    );
+    check(options,
+      Match.OneOf(
+        Match.ObjectIncluding({
+          id: String
+        }),
+        Match.ObjectIncluding({
+          chart: String
+        })
+      )
+    );
+
+    const results = Meteor.call('youtube/videos/list', options);
+
+    if (options.part === 'snippet,contentDetails,statistics') {
+      console.log('caching the result');
+
+      for (let item of results.items) {
+        check(item.kind, 'youtube#video');
+
+        var doc = {
+          _id: String(item.id),
+          modified: new Date(),
+          etag: String(item.etag)
+        };
+        if (item.snippet) {
+          doc.snippet = item.snippet;
+          doc.contentDetails = item.contentDetails;
+          doc.statistics = item.statistics;
+
+          var r = Songs.update(
+            {_id: doc._id},
+            doc,
+            {upsert: true}
+          );
+          console.log('updated documents:', r);
+        }
+      }
+    }
+
+    return results;
+  }
 });
