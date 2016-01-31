@@ -1,3 +1,6 @@
+import {Template} from 'meteor/templating';
+import {Playlists} from '/lib/collections';
+
 /**
  * Newest playlists
  */
@@ -6,7 +9,7 @@ Template.lastPlaylistsContainer.onCreated(function () {
   var instance = this;
 
   instance.autorun(function () {
-    var subscription = instance.subscribe('playlists.newest');
+    instance.subscribe('playlists.newest');
   });
 });
 
@@ -23,7 +26,7 @@ Template.lastPlaylistsContainer.helpers({
     };
 
     return Playlists.find(selector, options);
-  },
+  }
 });
 
 /**
@@ -34,7 +37,7 @@ Template.followedPlaylistsContainer.onCreated(function () {
   var instance = this;
 
   instance.autorun(function () {
-    var subscription = instance.subscribe('playlists.followed');
+    instance.subscribe('playlists.followed');
   });
 });
 
@@ -46,11 +49,11 @@ Template.followedPlaylistsContainer.helpers({
     };
     const options = {
       fields: {title: 1, cover: 1, createdAt: 1, owner: 1, privacy: 1, songs: 1},
-      sort: {createdAt: -1},
+      sort: {createdAt: -1}
     };
 
     return Playlists.find(selector, options);
-  },
+  }
 });
 
 /**
@@ -61,7 +64,7 @@ Template.ownPlaylistsContainer.onCreated(function () {
   var instance = this;
 
   instance.autorun(function () {
-    var subscription = instance.subscribe('playlists.fromUser');
+    instance.subscribe('playlists.fromUser');
   });
 });
 
@@ -72,9 +75,9 @@ Template.ownPlaylistsContainer.helpers({
     };
     const options = {
       fields: {title: 1, cover: 1, createdAt: 1, owner: 1, privacy: 1, songs: 1},
-      sort: {createdAt: -1},
+      sort: {createdAt: -1}
     };
 
     return Playlists.find(selector, options);
-  },
+  }
 });

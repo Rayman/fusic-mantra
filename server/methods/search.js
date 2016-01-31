@@ -1,5 +1,5 @@
 import {Youtube} from '../imports/youtube';
-import {Songs} from '../../lib/collections';
+import {Songs} from '/lib/collections';
 
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
