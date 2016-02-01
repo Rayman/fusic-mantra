@@ -1,3 +1,4 @@
+/* eslint no-inline-comments: 0 */
 /**
  * Copyright 2012 Google Inc. All Rights Reserved.
  *

@@ -1,10 +1,4 @@
-<head>
-  <title>Fusic</title>
-</head>
-
-<body>
-  {{> loginButtons}}
-
+<template name="Home">
   <h1>Create a new playlist</h1>
   {{> insertPlaylistForm}}
 
@@ -17,7 +11,7 @@
 
   <h1>Playlist</h1>
   {{> playlistContainer id="123"}}
-</body>
+</template>
 
 <template name="insertPlaylistForm">
   {{> quickForm id="insertPlaylistForm"

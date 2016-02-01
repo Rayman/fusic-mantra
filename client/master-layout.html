@@ -1,0 +1,14 @@
+<template name="MasterLayout">
+  <body>
+    <header>
+      {{> yield 'header'}}
+    </header>
+
+    {{> yield}}
+
+    <footer id="footer">
+      {{> yield 'footer'}}
+    </footer>
+  </body>
+</template>
+

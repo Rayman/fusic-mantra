@@ -1,0 +1,12 @@
+<template name="Header">
+  <nav>
+    <ul>
+      <li><a href="{{pathFor route='home'}}">Home</a></li>
+      <li><a href="{{pathFor route='playlists'}}">Browse Playlists</a></li>
+      <li><a href="{{pathFor route='playlists'}}">Browse Radios</a></li>
+      <li><a href="{{pathFor route='top'}}">Top Lists</a></li>
+      <li><a href="https://github.com/Rayman/fusic-meteor/issues">Report issue</a></li>
+    </ul>
+  </nav>
+  {{> loginButtons}}
+</template>
