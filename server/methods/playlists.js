@@ -7,7 +7,6 @@ Meteor.methods({
     check(playlist, {
       title: String,
       cover: Match.Optional(String),
-      description: Match.Optional(String),
       privacy: Match.Optional(Match.OneOf('public', 'private'))
     });
 
