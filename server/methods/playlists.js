@@ -4,6 +4,10 @@ import {check, Match} from 'meteor/check';
 
 Meteor.methods({
   'playlists.create'(playlist) {
+    // Show the latency compensations
+    Meteor._sleepForMs(500);
+
+    // check(_id, String);
     check(playlist, {
       title: String,
       cover: Match.Optional(String),
@@ -14,13 +18,9 @@ Meteor.methods({
       playlist.privacy = 'public';
     }
 
-    // check(_id, String);
-    // check(owner, String);
+    check(this.userId, String);
+    playlist.owner = this.userId;
 
-    // Show the latency compensations
-    Meteor._sleepForMs(500);
-
-    // TODO: Do some user authorization
     playlist.createdAt = new Date();
     Playlists.insert(playlist);
   }
