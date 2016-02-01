@@ -4,6 +4,10 @@
 
 <body>
   {{> loginButtons}}
+
+  <h1>Create a new playlist</h1>
+  {{> insertPlaylistForm}}
+
   <h1>Last playlists:</h1>
   {{> lastPlaylistsContainer }}
   <h1>Own playlists:</h1>
@@ -14,3 +18,8 @@
   <h1>Playlist</h1>
   {{> playlistContainer id="123"}}
 </body>
+
+<template name="insertPlaylistForm">
+  {{> quickForm id="insertPlaylistForm"
+      schema=PlaylistSchema type="method" meteormethod="playlists.create"}}
+</template>

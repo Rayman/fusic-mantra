@@ -21,5 +21,10 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 audit-argument-checks
 check
 #random
+
 accounts-ui
 accounts-password
+
+momentjs:moment
+aldeed:simple-schema
+aldeed:autoform
