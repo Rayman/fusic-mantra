@@ -1,5 +1,6 @@
 import {Playlists} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
+import {check} from 'meteor/check';
 
 Meteor.publish('playlists.newest', function () {
   const selector = {
@@ -45,6 +46,8 @@ Meteor.publish('playlists.fromUser', function (userId) {
 });
 
 Meteor.publish('playlists.single', function (playlistId) {
+  check(playlistId, String);
+
   const selector = {
     _id: playlistId,
     privacy: 'public'
