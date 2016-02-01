@@ -81,3 +81,9 @@ Template.ownPlaylistsContainer.helpers({
     return Playlists.find(selector, options);
   }
 });
+
+/**
+ * Generic list of playlists
+ */
+Template.Playlists.helpers({
+});

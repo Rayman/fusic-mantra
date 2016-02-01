@@ -1,8 +1,15 @@
-<template name="playlistContainer">
-
+<!-- Make a joined 'playlist' available as data context -->
+<template name="PlaylistContainer">
+  {{> Template.contentBlock playlist=playlist}}
 </template>
 
-<template name="playlist">
+<template name="PlaylistInfo">
+  <p>Title: {{title}}</p>
+  <p>Cover: {{cover}}</p>
+</template>
+
+<template name="Playlist">
+  The real playlist:
   {{#each songs}}
     <div class="song">
       <p>{{title}}</p>

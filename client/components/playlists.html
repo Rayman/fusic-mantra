@@ -23,7 +23,16 @@
 </template>
 
 <template name="Playlists">
-  {{#each playlist in playlists}}
-    <p><img height="24" src="{{playlist.cover}}" />{{playlist.title}}</p>
-  {{/each}}
+  <table>
+    <tr>
+      <th>Cover</th>
+      <th>Title</th>
+    </tr>
+    {{#each playlists}}
+      <tr>
+        <td><img height="24" src="{{cover}}" /></td>
+        <td><a href="{{pathFor route='playlists.single'}}">{{title}}</a></td>
+      </tr>
+    {{/each}}
+  </table>
 </template>

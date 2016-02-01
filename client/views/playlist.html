@@ -1,0 +1,8 @@
+<template name="PlaylistView">
+  {{#PlaylistContainer _id=_id}}
+    {{#with playlist}}
+      {{> PlaylistInfo}}
+      {{> Playlist}}
+    {{/with}}
+  {{/PlaylistContainer}}
+</template>
