@@ -1,6 +1,6 @@
 <template name="lastPlaylistsContainer">
   {{#if Template.subscriptionsReady}}
-    {{> Playlists playlists=playlists}}
+    {{> Template.contentBlock playlists=playlists}}
   {{else}}
     Loading...
   {{/if}}
@@ -8,7 +8,7 @@
 
 <template name="ownPlaylistsContainer">
   {{#if Template.subscriptionsReady}}
-    {{> Playlists playlists=playlists}}
+    {{> Template.contentBlock playlists=playlists}}
   {{else}}
     Loading...
   {{/if}}
@@ -16,13 +16,18 @@
 
 <template name="followedPlaylistsContainer">
   {{#if Template.subscriptionsReady}}
-    {{> Playlists playlists=playlists}}
+    {{> Template.contentBlock playlists=playlists}}
   {{else}}
     Loading...
   {{/if}}
 </template>
 
-<template name="Playlists">
+<template name="insertPlaylistForm">
+  {{> quickForm id="insertPlaylistForm"
+      schema=PlaylistSchema type="method" meteormethod="playlists.create"}}
+</template>
+
+<template name="PlaylistsTable">
   <table>
     <tr>
       <th>Cover</th>

@@ -1,5 +1,5 @@
 import {Template} from 'meteor/templating';
-import {Playlists} from '/lib/collections';
+import {Playlists, PlaylistSchema} from '/lib/collections';
 
 /**
  * Newest playlists
@@ -83,7 +83,11 @@ Template.ownPlaylistsContainer.helpers({
 });
 
 /**
- * Generic list of playlists
+ * Create a new playlist
  */
-Template.Playlists.helpers({
+
+Template.insertPlaylistForm.helpers({
+  PlaylistSchema: function () {
+    return PlaylistSchema.pick(['title', 'cover', 'privacy']);
+  }
 });

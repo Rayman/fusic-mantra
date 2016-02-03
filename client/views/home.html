@@ -1,16 +1,6 @@
 <template name="Home">
-  <h1>Create a new playlist</h1>
-  {{> insertPlaylistForm}}
-
   <h1>Last playlists:</h1>
-  {{> lastPlaylistsContainer }}
-  <h1>Own playlists:</h1>
-  {{> ownPlaylistsContainer }}
-  <h1>Followed playlists:</h1>
-  {{> followedPlaylistsContainer }}
-</template>
-
-<template name="insertPlaylistForm">
-  {{> quickForm id="insertPlaylistForm"
-      schema=PlaylistSchema type="method" meteormethod="playlists.create"}}
+  {{#lastPlaylistsContainer}}
+    {{> PlaylistsTable}}
+  {{/lastPlaylistsContainer}}
 </template>

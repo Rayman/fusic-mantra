@@ -1,0 +1,19 @@
+<template name="PlaylistsView">
+  <h1>Create a new playlist</h1>
+  {{> insertPlaylistForm}}
+
+  <h1>Last playlists:</h1>
+  {{#lastPlaylistsContainer}}
+    {{> PlaylistsTable}}
+  {{/lastPlaylistsContainer}}
+
+  <h1>Own playlists:</h1>
+  {{#ownPlaylistsContainer}}
+    {{> PlaylistsTable}}
+  {{/ownPlaylistsContainer}}
+
+  <h1>Followed playlists:</h1>
+  {{#followedPlaylistsContainer}}
+    {{> PlaylistsTable}}
+  {{/followedPlaylistsContainer}}
+</template>
