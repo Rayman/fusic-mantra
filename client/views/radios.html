@@ -1,0 +1,9 @@
+<template name="RadiosView">
+  <h1>Create a new radio</h1>
+  {{> insertRadioForm}}
+
+  <h1>Last radios:</h1>
+  {{#lastRadiosContainer}}
+    {{> RadiosTable}}
+  {{/lastRadiosContainer}}
+</template>

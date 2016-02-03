@@ -1,0 +1,27 @@
+<template name="lastRadiosContainer">
+  {{#if Template.subscriptionsReady}}
+    {{> Template.contentBlock radios=radios}}
+  {{else}}
+    Loading...
+  {{/if}}
+</template>
+
+<template name="insertRadioForm">
+  {{> quickForm id="insertRadioForm"
+      schema=RadioSchema type="method" meteormethod="radios.create"}}
+</template>
+
+<template name="RadiosTable">
+  <table>
+    <tr>
+      <th>Cover</th>
+      <th>Title</th>
+    </tr>
+    {{#each radios}}
+      <tr>
+        <td><img height="24" src="{{cover}}" /></td>
+        <td><a href="{{pathFor route='radios.single'}}">{{title}}</a></td>
+      </tr>
+    {{/each}}
+  </table>
+</template>
