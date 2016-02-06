@@ -4,22 +4,26 @@
 </template>
 
 <template name="RadioInfo">
-  <p>Title: {{title}}</p>
-  <p>Cover: {{cover}}</p>
+  {{#with radio}}
+    <p>Title: {{title}}</p>
+    <p>Cover: {{cover}}</p>
+  {{/with}}
 </template>
 
 <template name="Radio">
-  The real radio:
-  {{#each songs}}
-    <div class="song">
-      <p>{{title}}</p>
-    </div>
-  {{/each}}
-  {{#if Template.subscriptionsReady}}
-    {{#if hasMorePosts}}
-      <a class="load-more" href="#">Load More</a>
+  {{#with radio}}
+    The real radio:
+    {{#each songs}}
+      <div class="song">
+        <p>{{title}}</p>
+      </div>
+    {{/each}}
+    {{#if Template.subscriptionsReady}}
+      {{#if hasMorePosts}}
+        <a class="load-more" href="#">Load More</a>
+      {{/if}}
+    {{else}}
+      <div class="loading">Loading...</div>
     {{/if}}
-  {{else}}
-    <div class="loading">Loading...</div>
-  {{/if}}
+  {{/with}}
 </template>
