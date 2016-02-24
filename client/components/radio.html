@@ -1,29 +1,31 @@
 <!-- Make a joined 'radio' available as data context -->
 <template name="RadioContainer">
-  {{> Template.contentBlock radio=radio}}
+  {{> Template.contentBlock radio=radio subscriptionsReady=subscriptionsReady}}
 </template>
 
 <template name="RadioInfo">
-  {{#with radio}}
-    <p>Title: {{title}}</p>
-    <p>Cover: {{cover}}</p>
-  {{/with}}
+  {{#if subscriptionsReady}}
+    {{#with radio}}
+      <p>Title: {{title}}</p>
+      <p>Cover: {{cover}}</p>
+    {{/with}}
+  {{else}}
+    Loading RadioInfo...
+  {{/if}}
 </template>
 
 <template name="Radio">
-  {{#with radio}}
-    The real radio:
-    {{#each songs}}
-      <div class="song">
-        <p>{{title}}</p>
-      </div>
-    {{/each}}
-    {{#if Template.subscriptionsReady}}
-      {{#if hasMorePosts}}
-        <a class="load-more" href="#">Load More</a>
-      {{/if}}
-    {{else}}
-      <div class="loading">Loading...</div>
-    {{/if}}
-  {{/with}}
+  {{#if subscriptionsReady}}
+    {{#with radio}}
+      The real radio:
+      {{#each songs}}
+        <div class="song">
+          Song: {{song.snippet.title}}
+          <p>Added by {{author}}</p>
+        </div>
+      {{/each}}
+    {{/with}}
+  {{else}}
+    Loading Radio...
+  {{/if}}
 </template>

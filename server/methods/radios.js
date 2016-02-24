@@ -1,4 +1,4 @@
-import {Radios, RadioItems} from '/lib/collections';
+import {Radios, RadioItems, Songs} from '/lib/collections';
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
 
@@ -41,6 +41,13 @@ Meteor.methods({
     const createdAt = new Date();
     const author = 'The User';
 
+    const song = Songs.findOne({_id: songId});
+    console.log('addSong:', song);
+
+    if (!song) {
+      throw new Meteor.Error('song-not-found');
+    }
+
     const radioItem = {
       radioId,
       songId,
@@ -48,8 +55,5 @@ Meteor.methods({
       author
     };
     RadioItems.insert(radioItem);
-
-    // Modify the radio
-    // Radios.insert()
   }
 });

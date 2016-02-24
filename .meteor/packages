@@ -32,3 +32,4 @@ aldeed:simple-schema
 aldeed:autoform
 
 iron:router
+reywood:publish-composite # server side join

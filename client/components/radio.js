@@ -1,5 +1,5 @@
 import {Template} from 'meteor/templating';
-import {Radios} from '/lib/collections';
+import {Radios, RadioItems, Songs} from '/lib/collections';
 import {ReactiveVar} from 'meteor/reactive-var';
 
 Template.RadioContainer.onCreated(function () {
@@ -16,12 +16,24 @@ Template.RadioContainer.onCreated(function () {
 Template.RadioContainer.helpers({
   radio: function () {
     var _id = Template.instance().params.get()._id;
-    var p = Radios.findOne({}, {_id});
-    console.log('Template.RadioContainer::radio', p);
-    return p;
+    return Radios.findOne({}, {_id});
+  },
+  subscriptionsReady: function () {
+    return Template.instance().subscriptionsReady();
   }
 });
 
 Template.Radio.onCreated(function () {
   console.log('Radio.onCreated', this);
+});
+
+Template.Radio.helpers({
+  songs: function () {
+    const radioId = this._id;
+    return RadioItems.find({radioId});
+  },
+  song: function () {
+    const radioItem = this;
+    return Songs.findOne(radioItem.songId);
+  }
 });
